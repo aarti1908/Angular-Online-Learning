@@ -1,0 +1,19 @@
+.userListItem{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+    .icon{
+        width: 20%;
+    }
+    .info{
+        width: 80%;
+        .name{
+            span:last-child{
+                float: right;
+                font-size: 12px;
+            }
+        }
+    }
+}

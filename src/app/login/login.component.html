@@ -1,0 +1,48 @@
+
+<div class="content">
+    <mat-card class="login-form">
+        <mat-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-container">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email Address:</mat-label>
+                        <input matInput placeholder="Enter your email" formControlName="email">
+                        <mat-icon matSuffix>
+                            <mat-icon aria-hidden="false" aria-label="Email icon" fontIcon="email"></mat-icon>
+                        </mat-icon>
+                    </mat-form-field>
+                
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password:</mat-label>
+                        <input matInput placeholder="Enter Password" formControlName="password">
+                        <mat-icon matSuffix>
+                            <mat-icon aria-hidden="false" aria-label="Home icon" fontIcon="vpn_key"></mat-icon>
+                        </mat-icon>
+                    </mat-form-field>
+                
+                    <!-- <mat-form-field appearance="fill">
+                        <mat-label>Confirm Password:</mat-label>
+                        <input matInput placeholder="Confirm password" formControlName="confirmPassword">
+                        <mat-icon matSuffix>
+                            <mat-icon aria-hidden="false" aria-label="Home icon" fontIcon="vpn_key"></mat-icon>
+                        </mat-icon>
+                    </mat-form-field> -->
+                
+                    <mat-form-field>
+                        <mat-select placeholder="Role" formControlName="role">
+                        <mat-option value="teacher">Teacher</mat-option>
+                        <mat-option value="student">Student</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button type="submit" mat-flat-button color="primary" [disabled]="!loginForm.valid">{{ isLogin ? 'Login': 'Register'}}</button>
+                    <p class="note" *ngIf="!isLogin" (click)="isLogin =! isLogin">Existing User? <a>Login</a></p>
+                    <p class="note" *ngIf="isLogin" (click)="isLogin =! isLogin">New User? <a>Register</a></p>
+
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+
+  

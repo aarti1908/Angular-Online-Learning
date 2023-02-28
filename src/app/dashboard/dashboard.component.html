@@ -1,0 +1,20 @@
+<div class="content">
+    <mat-form-field>
+    <mat-select placeholder="Sort" (selectionChange)="onSort($event)">
+        <mat-option value="asc">A-Z</mat-option>
+        <mat-option value="desc">Z-A</mat-option>
+    </mat-select>
+    </mat-form-field>
+    <mat-list>
+        <mat-list-item *ngFor="let user of users; trackBy: trackByFn">
+          <div class="userListItem">
+            <div class="icon"><mat-icon>face</mat-icon></div>
+            <div class="info">
+              <div matListItemTitle class="name"><span>{{user?.name}}</span> <span>{{user?.role}}</span></div>
+              <div matListItemLine>{{user?.email}}</div>
+            </div>
+          </div>
+          
+        </mat-list-item>
+      </mat-list>
+</div>

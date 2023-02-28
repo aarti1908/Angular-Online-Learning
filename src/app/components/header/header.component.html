@@ -1,0 +1,9 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>{{ pageTitle }}</span>
+        <span class="example-spacer"></span>
+        <button *ngIf="isAuthenticated" mat-icon-button class="example-icon" (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>

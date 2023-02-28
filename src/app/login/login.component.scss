@@ -1,0 +1,19 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+.form-container > * {
+  width: 100%;
+}
+.login-form{
+  width: 60%;
+  margin: 0 auto;
+}
+.note{
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+  a{
+    font-weight: bold;
+  }
+}
