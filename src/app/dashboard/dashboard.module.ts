@@ -7,6 +7,7 @@ import {MatListModule} from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     MatIconModule,
     MatDividerModule,
     MatSelectModule,
+    MatButtonModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -5,6 +5,7 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatIconModule} from '@angular/material/icon';
 import { AuthService } from '../services/auth.service';
 import { FooterComponent } from './footer/footer.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -13,7 +14,8 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     CommonModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [HeaderComponent, FooterComponent],
   providers:[AuthService]

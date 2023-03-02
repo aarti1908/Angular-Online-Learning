@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit{
  
-  @Input() pageTitle : string = '' ;
+  @Input() pageTitle? : string = '' ;
   isAuthenticated : boolean = false;
 
   ngOnInit(): void {

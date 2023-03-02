@@ -8,8 +8,8 @@ import { environment } from '../enviornments/enviornments';
 import { AngularFireModule } from '@angular/fire/compat';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AuthGuard } from './gaurds/auth.gaurd';
-import { UnAuthGuard } from './gaurds/unAuth.guard';
 import { ComponentsModule } from './components/components.module';
+import { AppService } from './services/app.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { ComponentsModule } from './components/components.module';
     AngularFireModule.initializeApp(environment.firebase),
 
   ],
-  providers: [AuthGuard, UnAuthGuard],
+  providers: [AuthGuard, AppService],
   bootstrap: [AppComponent], 
 })
 export class AppModule { }

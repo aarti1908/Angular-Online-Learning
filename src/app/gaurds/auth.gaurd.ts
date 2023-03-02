@@ -4,7 +4,7 @@ import {
 	CanActivate,
 	Router,
 	RouterStateSnapshot,
-	UrlTree
+	CanDeactivate
 } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 
@@ -16,10 +16,19 @@ export class AuthGuard implements CanActivate {
 	canActivate(
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot): boolean | Promise<boolean> {
-		var isAuthenticated = this.authService.getAuthStatus();
-		if (!isAuthenticated) {
-			this.router.navigate(['/login']);
+		let isAuthenticated = this.authService.getAuthStatus();
+		if (isAuthenticated) {
+			if(state.url === '/login') {
+				this.router.navigate(['/dashboard']);
+				return false;
+			}
+		} else {
+			if(state.url != '/login') {
+				this.router.navigate(['/login']);
+				return false;
+			};
 		}
-		return isAuthenticated;
+
+		return true;
 	}
 }

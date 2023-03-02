@@ -1,20 +1,25 @@
 <div class="content">
-    <mat-form-field>
-    <mat-select placeholder="Sort" (selectionChange)="onSort($event)">
-        <mat-option value="asc">A-Z</mat-option>
-        <mat-option value="desc">Z-A</mat-option>
-    </mat-select>
-    </mat-form-field>
     <mat-list>
-        <mat-list-item *ngFor="let user of users; trackBy: trackByFn">
-          <div class="userListItem">
-            <div class="icon"><mat-icon>face</mat-icon></div>
-            <div class="info">
-              <div matListItemTitle class="name"><span>{{user?.name}}</span> <span>{{user?.role}}</span></div>
-              <div matListItemLine>{{user?.email}}</div>
-            </div>
-          </div>
-          
+        <mat-list-item *ngFor="let user of users; trackBy: trackByFn" class="userListItem">
+              <div matListItemTitle class="info"><span>{{user?.name}}</span> | 
+              <span class="email">{{user?.email}}</span>
+              <span>{{user?.role}}</span></div>
         </mat-list-item>
       </mat-list>
+
+
+      <div class="pagination">
+        <button mat-mini-fab color="accent" (click)="goTo('First')">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="first_page"></mat-icon>
+        </button>
+        <button mat-mini-fab color="accent" (click)="goTo('Previous')">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="keyboard_arrow_left"></mat-icon>
+        </button>
+        <button mat-mini-fab color="accent" (click)="goTo('Next')">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="keyboard_arrow_right"></mat-icon>
+        </button>
+        <button mat-mini-fab color="accent" (click)="goTo('Last')">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="last_page"></mat-icon>
+        </button>
+      </div>
 </div>

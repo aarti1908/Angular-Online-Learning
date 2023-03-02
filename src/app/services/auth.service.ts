@@ -53,8 +53,12 @@ export class AuthService {
     }
 
     saveUser(id : string, userInfo : User) {
-        const users = this.db.list('users');
-        users.push(userInfo).child(id);
+        const usersList = this.db.list('users/list');
+        usersList.push(userInfo).child(id);
+    }
+
+
+    updateCount(){
     }
 
     getAuthStatus(){

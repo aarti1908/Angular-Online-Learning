@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppService } from '../services/app.service';
 import { AuthService } from '../services/auth.service';
+
+
+interface Control  { 
+  type: string; 
+  label: string; 
+  fieldName: string; 
+  properties: FormControl<string | null>; 
+}
 
 @Component({
   selector: 'app-login',
@@ -11,13 +20,38 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit{
   
   isLogin : boolean = true;
+  loginForm : FormGroup;
+  fields : Control[] = [];
+  loginFields = [
+      {
+        type : 'text',
+        label : 'Email Id',
+        fieldName : 'email',
+        properties : new FormControl("", [Validators.required])
+      },
+      {
+        type : 'password',
+        label : 'Password',
+        fieldName : 'password',
+        properties : new FormControl("", [Validators.required])
+      },
+  ];
 
-  loginForm = this.fb.group({
-    'email' : ['', Validators.required],
-    'password' : ['', Validators.required],
-    // confirmPassword : ['', Validators.required],
-    'role' : ['', Validators.required],
-  });
+  registrationFeilds = [
+    ...this.loginFields,
+    {
+      type : 'password',
+      label : 'Confirm Password',
+      fieldName : 'confirmpassword',
+      properties : new FormControl("", [Validators.required])
+    },
+    {
+      type : 'select',
+      label : 'Role',
+      fieldName : 'role',
+      properties : new FormControl("", [Validators.required])
+    },
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -25,12 +59,30 @@ export class LoginComponent implements OnInit{
     private router : Router){}
 
   ngOnInit(){
-    // if(!this.isLogin) {
-    //   this.loginForm.addControl('confirmPassword',[]);
-    // }
+    this.setForm();
   }
 
-  onSubmit(){
+  toggleScreen(){
+    this.isLogin = !this.isLogin;
+    this.setForm();
+  }
+
+  setForm(){
+    this.fields = this.isLogin ? this.loginFields : this.registrationFeilds;
+    const formGroupFields = this.getFormControlsFields(this.fields);
+    this.loginForm = new FormGroup(formGroupFields);
+  }
+
+  getFormControlsFields(fields : Control[]) {
+      const formGroupFields = {};
+      for (const field of Object.values(fields)) {
+        console.log(field )
+          formGroupFields[field?.fieldName] = field.properties;
+      }
+      return formGroupFields;
+  }
+
+  onSubmit() {
     if(this.loginForm.valid) {
       
       if(this.loginForm.value.email && this.loginForm.value.password){

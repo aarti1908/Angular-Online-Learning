@@ -10,6 +10,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { ComponentsModule } from '../components/components.module';
 import { AuthService } from '../services/auth.service';
+import { MatButtonModule } from '@angular/material/button';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
     MatCardModule,
     MatIconModule,
     ComponentsModule,
+    MatButtonModule,
     RouterModule.forChild(routes)
   ],
   providers : [AuthService]
