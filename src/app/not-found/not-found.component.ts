@@ -7,7 +7,5 @@ import { AppService } from '../services/app.service';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent {
-  constructor(private appService: AppService){
-    this.appService.pageName = 'Profile';
-  }
+
 }
