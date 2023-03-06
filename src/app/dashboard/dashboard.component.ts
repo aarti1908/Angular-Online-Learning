@@ -1,7 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { map } from 'rxjs';
+import { Router } from '@angular/router';
 import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,14 +16,21 @@ export class DashboardComponent implements OnInit{
   totalRecords : number = 19; // note : check how to get total records from firebase
   itemsPerPage : number = 4;
 
-  constructor(private db : AngularFireDatabase){}
+  constructor(private db : AngularFireDatabase,
+    private router: Router,
+    private authService: AuthService){}
 
   ngOnInit() {
     this.fetchList('First');
   }
 
+  onDelete(id: string){
+    this.authService.deleteUser(id);
+  }
+
   fetchList(type: string){
     if(type == 'First') {
+      
       this.db.list<User>('/users/list', ref => ref.orderByChild('name')
       .limitToFirst(this.itemsPerPage)).valueChanges()
       .subscribe(data => {
@@ -74,5 +82,9 @@ export class DashboardComponent implements OnInit{
 
   trackByFn(index :  number, item : User) {
     return index; // or item.id
+  }
+
+  openProfile(){
+    this.router.navigateByUrl('/profile');
   }
 }

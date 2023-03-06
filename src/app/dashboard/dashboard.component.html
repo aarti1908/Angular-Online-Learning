@@ -3,7 +3,13 @@
         <mat-list-item *ngFor="let user of users; trackBy: trackByFn" class="userListItem">
               <div matListItemTitle class="info"><span>{{user?.name}}</span> | 
               <span class="email">{{user?.email}}</span>
-              <span>{{user?.role}}</span></div>
+              <span>{{user?.role}}</span>
+              <span>
+                <mat-icon aria-hidden="false" fontIcon="delete" (click)="onDelete(user.id)"></mat-icon>
+                <mat-icon aria-hidden="false" fontIcon="account_circle" (click)="openProfile()"></mat-icon>
+              </span>
+            </div>
+              
         </mat-list-item>
       </mat-list>
 

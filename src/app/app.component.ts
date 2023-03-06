@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { concatAll, map, mergeAll, Observable, Subject, switchAll } from 'rxjs';
-import { AppService } from './services/app.service';
+import { Component } from '@angular/core';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +8,4 @@ import { AppService } from './services/app.service';
 })
 export class AppComponent{
 
-  constructor(private appService: AppService) {}
 }

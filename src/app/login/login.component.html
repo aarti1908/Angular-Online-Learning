@@ -15,7 +15,7 @@
                                 <mat-option value="student">Student</mat-option>
                             </mat-select>
                             <mat-icon matSuffix *ngIf="field.type == 'text' || field.type == 'password'">
-                                <mat-icon aria-hidden="false" aria-label="Email icon" fontIcon="email"></mat-icon>
+                                <mat-icon aria-hidden="false" aria-label="Email icon" [fontIcon]="field.icon"></mat-icon>
                             </mat-icon>
                     </mat-form-field>
                     

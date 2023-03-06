@@ -9,6 +9,7 @@ interface Control  {
   type: string; 
   label: string; 
   fieldName: string; 
+  icon : string;
   properties: FormControl<string | null>; 
 }
 
@@ -27,12 +28,14 @@ export class LoginComponent implements OnInit{
         type : 'text',
         label : 'Email Id',
         fieldName : 'email',
+        icon: 'email',
         properties : new FormControl("", [Validators.required])
       },
       {
         type : 'password',
         label : 'Password',
         fieldName : 'password',
+        icon: 'key',
         properties : new FormControl("", [Validators.required])
       },
   ];
@@ -43,12 +46,14 @@ export class LoginComponent implements OnInit{
       type : 'password',
       label : 'Confirm Password',
       fieldName : 'confirmpassword',
+      icon: 'key',
       properties : new FormControl("", [Validators.required])
     },
     {
       type : 'select',
       label : 'Role',
       fieldName : 'role',
+      icon: '',
       properties : new FormControl("", [Validators.required])
     },
   ];
@@ -89,7 +94,7 @@ export class LoginComponent implements OnInit{
 
         if(this.isLogin) {
           this.auth.SignIn(this.loginForm.value.email, this.loginForm.value.password).then(response => {
-            this.auth.GetToken().then(value => {
+              this.auth.GetToken().then(value => {
               localStorage.setItem('token', JSON.stringify(value));
               this.router.navigateByUrl('/');
             })

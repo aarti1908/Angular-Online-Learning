@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/enviornments/enviornments';
 
 import { HeaderComponent } from './header.component';
 
@@ -8,7 +12,11 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      imports:[MatToolbarModule],
+      declarations: [ HeaderComponent ],
+      providers : [
+        { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+      ],
     })
     .compileComponents();
 

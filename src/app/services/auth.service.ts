@@ -23,7 +23,8 @@ export class AuthService {
         return this.afAuth
           .createUserWithEmailAndPassword(email, password)
           .then((result) => {
-            if(result.user?.uid) this.saveUser(result.user?.uid, {
+            if(result.user?.uid) this.saveUser({
+              id:result.user?.uid,
               name: 'Aarti',
               email : email,
               role: role
@@ -52,16 +53,22 @@ export class AuthService {
         })
     }
 
-    saveUser(id : string, userInfo : User) {
+    saveUser(userInfo : User) {
         const usersList = this.db.list('users/list');
-        usersList.push(userInfo).child(id);
+        usersList.update(userInfo.id,userInfo);
     }
 
-
-    updateCount(){
+    deleteUser(id : string){
+        const usersList = this.db.list('users/list/' + id);
+        console.log(this.getCurrentUser()   )
+        // usersList.remove();
     }
 
     getAuthStatus(){
         return localStorage.getItem('token') ? true : false;
+    }
+
+    getCurrentUser(){
+        return this.afAuth.authState.subscribe(value => console.log(value))
     }
 }
